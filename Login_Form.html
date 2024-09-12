@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(https://www.ultraimagehub.com/wallpapers/tr:flp-false,gx-0.3,gy-1,q-75,rh-3264,rw-5824,th-1080,tw-1920/1276191601013690431.jpeg) no-repeat;
+            background-position: center;
+            background-size: cover;
+            transition: 1s;
+            }
+            body :focus{
+                transform: scale(1.05);   
+            }
+
+        .main {
+            width: 420px;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border: none;
+            border-radius: 20px;
+            backdrop-filter: blur(60px);
+            box-shadow: 0 0 10px rgb(39, 39, 39) ;
+            color: #fff;
+            padding: 30px 40px;
+            
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+        }
+        .box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+        .box input {
+            width: 100%;
+            height: 65%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 30px;
+            font-size: 15px;
+            padding: 0px 10px 0px 35px;
+            color: #fff;
+        }
+
+        .box i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            transition: 0.1s;
+        }
+
+        .btn {
+            width: 50%;
+            margin-left: 25%;
+            height: 35px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 0 50px rgb(0, 0, 0);
+            font-size: 20px;
+            cursor: pointer;
+            color: rgb(0, 183, 255);
+            font-weight: 600;
+        }
+        .error{
+            color: darkred;
+            margin: 4px;
+        }
+        .success{
+            text-align: center;
+            color: darkgreen;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: 3px  underline white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <form action="" onsubmit="return false">
+            <h1>Login</h1>
+            
+            <div class="box">
+                <label for="">Enter Usaername :</label>
+                <input type="text" id="f1">
+                <i class="fa-solid fa-user"></i>
+                <div class="error" id="error-uname"></div>
+            </div>
+
+            <div class="box">
+                <label for="">Enter Password :</label>
+                <input type="password" id="f2">
+                <i class="fa-solid fa-lock"></i>
+                <div class="error" id="error-pass"></div>
+            </div>
+
+            <div class="box">
+                <label for="">Confirm Password :</label>
+                <input type="password" id="f3">
+                <i class="fa-solid fa-lock"></i>
+                <div class="error" id="error-cpass"></div>
+            </div>
+
+            <input class="btn" type="button" value="Login" id="f4" onclick="validation()">
+            <div class="success" id="success-message"></div>
+        </form>
+    </div>
+
+    <script>
+        function validation() {
+            let uname = document.getElementById("f1").value;
+            let pass = document.getElementById("f2").value;
+            let cpass = document.getElementById("f3").value;
+
+            let Error = false;
+
+            document.getElementById("error-uname").innerHTML = ""
+            document.getElementById("error-pass").innerHTML = ""
+            document.getElementById("error-cpass").innerHTML = ""
+            document.getElementById("success-message").innerHTML = ""
+
+            if (uname.length !== 0) {
+                if (uname.length < 5) {
+                    document.getElementById("error-uname").innerHTML = "User Name is atleast 5 charecters ..!";
+                    Error = true;
+                }
+            } else {
+                document.getElementById("error-uname").innerHTML = "User Name Is Requried... "
+            }
+
+            if (pass.length !== 0) {
+                if (pass.length !== 8) {
+                    document.getElementById("error-pass").innerHTML = "Password should be 8 characters only";
+                    Error = true;
+                }
+            } else {
+                document.getElementById("error-pass").innerHTML = "Password Is Requried... "
+                Error = true;
+            }
+
+            if (cpass == "") {
+                document.getElementById("error-cpass").innerHTML = "Confirm Password Is Requried...";
+                Error = true;
+            } else if (pass !== cpass) {
+                document.getElementById("error-cpass").innerHTML = "password & confirm password must be same ";
+                Error = true;
+            }
+
+
+            if (!Error) {
+                document.getElementById("success-message").innerHTML = "Login Successfuly";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
